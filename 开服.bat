@@ -1,4 +1,4 @@
-@echo off
+::@echo off
 @echo 本脚本为我的世界开服脚本，请放到与服务端核心同级的目录下
 @echo 请将你的服务端核心的名字改为server.jar
 @echo 请确保你安装了JAVA，若没有，可以在这里快速打开网页下载
@@ -28,14 +28,14 @@ if exist "%cd%\server.jar" (goto go2) else (goto serverjar)
 @echo 现在输入你要设置的运行内存大小，如 5G 或 2048M
 set /p ram=输入完成后，请按回车：
 :123123
-set cs2=1
-title 开服脚本，设置运行内存为：%ram%，上次启动是在%time%，启动次数%cs2%，正确关闭服务器请输入stop
-set /a cs2+=1
+set qdcs=1
+title 开服脚本，设置运行内存为：%ram%，上次启动是在%time%，启动次数%qdcs%，正确关闭服务器请输入stop
 java -Xms%ram% -Xmx%ram% -jar server.jar
 @echo 服务器已于%time%关闭或崩溃，将在一段时间后重启，请确保你已同意eula协议，将eula.txt中的false更改为true
 @echo 同时确保你按照正确格式设置了运行内存
 timeout 10
-if %cs2%==10 (goto 456) else (goto 123123)
+if %qdcs%==10 (goto 456) else (goto 123123)
+set /a qdcs+=1
 :456 
 @echo 服务器重启次数过多，为防止进一步损坏，脚本停止运行，请查询日志，若看不懂请向他人询问
 title 服务器重启次数过多，为防止进一步损坏，脚本停止运行，上次启动在%time%
@@ -71,7 +71,14 @@ if %djar%==7 (bitsadmin /transfer down /download /priority normal "https://pisto
 :j7
 if %djar%==8 (bitsadmin /transfer down /download /priority normal "https://piston-data.mojang.com/v1/objects/f69c284232d7c7580bd89a5a4931c3581eae1378/server.jar" %cd%\server.jar) else (goto j8)
 :j8
-if %djar%==9 (bitsadmin /transfer down /download /priority normal "https://piston-data.mojang.com/v1/objects/3737db93722a9e39eeada7c27e7aca28b144ffa7/server.jar" %cd%\server.jar) else (goto go2)
+if %djar%==9 (bitsadmin /transfer down /download /priority normal "https://piston-data.mojang.com/v1/objects/3737db93722a9e39eeada7c27e7aca28b144ffa7/server.jar" %cd%\server.jar) else (goto j9)
+:j9
+if %djar%==10 (bitsadmin /transfer down /download /priority normal "https://gitee.com/hdqid/minecraft-service/releases/download/catserver/CatServer-8d58cdb8-universal.jar" %cd%\server.jar) else (goto j10)
+:j10
+if %djar%==10 (bitsadmin /transfer down /download /priority normal "https://gitee.com/hdqid/minecraft-service/releases/download/catserver1.16.5/CatServer-1.16.5-301aa5f8-server.jar" %cd%\server.jar) else (goto j11)
+:j11
+if %djar%==10 (bitsadmin /transfer down /download /priority normal "https://mohistmc.com/builds/1.18.2-testing/mohist-1.18.2-90-server.jar" %cd%\server.jar) else (goto go2)
+:j12
 @echo 下载完成，即将开服
 goto go2
 
