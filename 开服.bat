@@ -1,15 +1,15 @@
 @echo off
-@echo ±¾½Å±¾ÎªÎÒµÄÊÀ½ç¿ª·ş½Å±¾£¬Çë·Åµ½Óë·şÎñ¶ËºËĞÄÍ¬¼¶µÄÄ¿Â¼ÏÂ
-@echo Çë½«ÄãµÄ·şÎñ¶ËºËĞÄµÄÃû×Ö¸ÄÎªserver.jar
-@echo ÇëÈ·±£Äã°²×°ÁËJAVA£¬ÈôÃ»ÓĞ£¬¿ÉÒÔÔÚÕâÀï¿ìËÙ´ò¿ªÍøÒ³ÏÂÔØ
+@echo æœ¬è„šæœ¬ä¸ºæˆ‘çš„ä¸–ç•Œå¼€æœè„šæœ¬ï¼Œè¯·æ”¾åˆ°ä¸æœåŠ¡ç«¯æ ¸å¿ƒåŒçº§çš„ç›®å½•ä¸‹
+@echo è¯·å°†ä½ çš„æœåŠ¡ç«¯æ ¸å¿ƒçš„åå­—æ”¹ä¸ºserver.jar
+@echo è¯·ç¡®ä¿ä½ å®‰è£…äº†JAVAï¼Œè‹¥æ²¡æœ‰ï¼Œå¯ä»¥åœ¨è¿™é‡Œå¿«é€Ÿæ‰“å¼€ç½‘é¡µä¸‹è½½
 @echo =================================
-@echo ÊäÈëĞòºÅÏÂÔØJava
-@echo 0   ²»ÏÂÔØJava
-@echo 1   ÏÂÔØJava8
-@echo 2   ÏÂÔØJava16
-@echo 3   ÏÂÔØJava17
+@echo è¾“å…¥åºå·ä¸‹è½½Java
+@echo 0   ä¸ä¸‹è½½Java
+@echo 1   ä¸‹è½½Java8
+@echo 2   ä¸‹è½½Java16
+@echo 3   ä¸‹è½½Java17
 @echo =================================
-CHOICE /C 0123 /N /M "Çë°´ÏÂ¶ÔÓ¦Êı×ÖÀ´Ñ¡ÔñÒªÖ´ĞĞµÄ²Ù×÷"
+CHOICE /C 0123 /N /M "è¯·æŒ‰ä¸‹å¯¹åº”æ•°å­—æ¥é€‰æ‹©è¦æ‰§è¡Œçš„æ“ä½œ"
 set  java=%ERRORLEVEL%
 if %java%==4 (start https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html) else (goto 17)
 :17
@@ -21,39 +21,39 @@ if %java%==1 (goto start) else (goto go)
 :start
 if %java% NEQ 1 (goto run) else (goto go)
 :run
-@echo JavaÏÂÔØÍê³Éºó£¬½¨Òé°²×°ÔÚ%SystemDrive%ÅÌÏÂ£¬ÓÉÓÚÖî¶àÔ­Òò£¬½Å±¾²»Ìá¹©Ö±½ÓÏÂÔØ
+@echo Javaä¸‹è½½å®Œæˆåï¼Œå»ºè®®å®‰è£…åœ¨%SystemDrive%ç›˜ä¸‹ï¼Œç”±äºè¯¸å¤šåŸå› ï¼Œè„šæœ¬ä¸æä¾›ç›´æ¥ä¸‹è½½
 :go
 if exist "%cd%\server.jar" (goto go2) else (goto serverjar)
 :go2
-@echo ÏÖÔÚÊäÈëÄãÒªÉèÖÃµÄÔËĞĞÄÚ´æ´óĞ¡£¬Èç 5G »ò 2048M
-set /p ram=ÊäÈëÍê³Éºó£¬Çë°´»Ø³µ£º
+@echo ç°åœ¨è¾“å…¥ä½ è¦è®¾ç½®çš„è¿è¡Œå†…å­˜å¤§å°ï¼Œå¦‚ 5G æˆ– 2048M
+set /p ram=è¾“å…¥å®Œæˆåï¼Œè¯·æŒ‰å›è½¦ï¼š
 :123123
 set cs2=1
-title ¿ª·ş½Å±¾£¬ÉèÖÃÔËĞĞÄÚ´æÎª£º%ram%£¬ÉÏ´ÎÆô¶¯ÊÇÔÚ%time%£¬Æô¶¯´ÎÊı%cs2%£¬ÕıÈ·¹Ø±Õ·şÎñÆ÷ÇëÊäÈëstop
+title å¼€æœè„šæœ¬ï¼Œè®¾ç½®è¿è¡Œå†…å­˜ä¸ºï¼š%ram%ï¼Œä¸Šæ¬¡å¯åŠ¨æ˜¯åœ¨%time%ï¼Œå¯åŠ¨æ¬¡æ•°%cs2%ï¼Œæ­£ç¡®å…³é—­æœåŠ¡å™¨è¯·è¾“å…¥stop
 set /a cs2+=1
 java -Xms%ram% -Xmx%ram% -jar server.jar
-@echo ·şÎñÆ÷ÒÑÓÚ%time%¹Ø±Õ»ò±ÀÀ££¬½«ÔÚÒ»¶ÎÊ±¼äºóÖØÆô£¬ÇëÈ·±£ÄãÒÑÍ¬ÒâeulaĞ­Òé£¬½«eula.txtÖĞµÄfalse¸ü¸ÄÎªtrue
-@echo Í¬Ê±È·±£Äã°´ÕÕÕıÈ·¸ñÊ½ÉèÖÃÁËÔËĞĞÄÚ´æ
+@echo æœåŠ¡å™¨å·²äº%time%å…³é—­æˆ–å´©æºƒï¼Œå°†åœ¨ä¸€æ®µæ—¶é—´åé‡å¯ï¼Œè¯·ç¡®ä¿ä½ å·²åŒæ„eulaåè®®ï¼Œå°†eula.txtä¸­çš„falseæ›´æ”¹ä¸ºtrue
+@echo åŒæ—¶ç¡®ä¿ä½ æŒ‰ç…§æ­£ç¡®æ ¼å¼è®¾ç½®äº†è¿è¡Œå†…å­˜
 timeout 10
 if %cs2%==10 (goto 456) else (goto 123123)
 :456 
-@echo ·şÎñÆ÷ÖØÆô´ÎÊı¹ı¶à£¬Îª·ÀÖ¹½øÒ»²½Ëğ»µ£¬½Å±¾Í£Ö¹ÔËĞĞ£¬Çë²éÑ¯ÈÕÖ¾£¬Èô¿´²»¶®ÇëÏòËûÈËÑ¯ÎÊ
-title ·şÎñÆ÷ÖØÆô´ÎÊı¹ı¶à£¬Îª·ÀÖ¹½øÒ»²½Ëğ»µ£¬½Å±¾Í£Ö¹ÔËĞĞ£¬ÉÏ´ÎÆô¶¯ÔÚ%time%
+@echo æœåŠ¡å™¨é‡å¯æ¬¡æ•°è¿‡å¤šï¼Œä¸ºé˜²æ­¢è¿›ä¸€æ­¥æŸåï¼Œè„šæœ¬åœæ­¢è¿è¡Œï¼Œè¯·æŸ¥è¯¢æ—¥å¿—ï¼Œè‹¥çœ‹ä¸æ‡‚è¯·å‘ä»–äººè¯¢é—®
+title æœåŠ¡å™¨é‡å¯æ¬¡æ•°è¿‡å¤šï¼Œä¸ºé˜²æ­¢è¿›ä¸€æ­¥æŸåï¼Œè„šæœ¬åœæ­¢è¿è¡Œï¼Œä¸Šæ¬¡å¯åŠ¨åœ¨%time%
 pause
 :serverjar
-@echo Ã»ÓĞÔÚÍ¬¼¶Ä¿Â¼ÏÂÕÒµ½server.jar
+@echo æ²¡æœ‰åœ¨åŒçº§ç›®å½•ä¸‹æ‰¾åˆ°server.jar
 @echo ==================================
-@echo 0 ²»½øĞĞÈÎºÎ²Ù×÷£¬¼ÌĞø¿ª·ş
-@echo 1 Ñ°ÕÒjarÎÄ¼ş²¢¸ÄÃûÎªserver.jar£¬²¢¿ª·ş
-@echo 2 ÏÂÔØ1.9.4·şÎñ¶Ë
-@echo 3 ÏÂÔØ1.12.2·şÎñ¶Ë
-@echo 4 ÏÂÔØ1.14.4·şÎñ¶Ë
-@echo 5 ÏÂÔØ1.16.5·şÎñ¶Ë
-@echo 6 ÏÂÔØ1.18.2·şÎñ¶Ë
-@echo 7 ÏÂÔØ1.19.2·şÎñ¶Ë
-@echo Ô­°æ¶ËÏÂÔØ×Ômojang·şÎñÆ÷£¬ÆäËü¶ËÀ´×ÔGitHub
+@echo 0 ä¸è¿›è¡Œä»»ä½•æ“ä½œï¼Œç»§ç»­å¼€æœ
+@echo 1 å¯»æ‰¾jaræ–‡ä»¶å¹¶æ”¹åä¸ºserver.jarï¼Œå¹¶å¼€æœ
+@echo 2 ä¸‹è½½1.9.4æœåŠ¡ç«¯   8 ä¸‹è½½1.13.2æœåŠ¡ç«¯
+@echo 3 ä¸‹è½½1.12.2æœåŠ¡ç«¯ 9 ä¸‹è½½catserver1.12.2
+@echo 4 ä¸‹è½½1.14.4æœåŠ¡ç«¯ A ä¸‹è½½catserver1.16.5
+@echo 5 ä¸‹è½½1.16.5æœåŠ¡ç«¯ 
+@echo 6 ä¸‹è½½1.18.2æœåŠ¡ç«¯
+@echo 7 ä¸‹è½½1.19.2æœåŠ¡ç«¯
+@echo åŸç‰ˆç«¯ä¸‹è½½è‡ªmojangæœåŠ¡å™¨ï¼Œå…¶å®ƒç«¯æ¥è‡ªGitHub
 @echo ==================================
-CHOICE /C 0123 /N /M "Çë°´ÏÂ¶ÔÓ¦Êı×Ö»ò×ÖÄ¸À´Ñ¡ÔñÒªÖ´ĞĞµÄ²Ù×÷"
+CHOICE /C 0123456789A /N /M "è¯·æŒ‰ä¸‹å¯¹åº”æ•°å­—æˆ–å­—æ¯æ¥é€‰æ‹©è¦æ‰§è¡Œçš„æ“ä½œ"
 set  djar=%ERRORLEVEL%
 if %djar%==1 (goto go2) else (goto j1)
 :j1
@@ -69,8 +69,10 @@ if %djar%==6 (bitsadmin /transfer down /download /priority normal "https://pisto
 :j6
 if %djar%==7 (bitsadmin /transfer down /download /priority normal "https://piston-data.mojang.com/v1/objects/c8f83c5655308435b3dcf03c06d9fe8740a77469/server.jar" %cd%\server.jar) else (goto j7)
 :j7
-if %djar%==8 (bitsadmin /transfer down /download /priority normal "https://piston-data.mojang.com/v1/objects/f69c284232d7c7580bd89a5a4931c3581eae1378/server.jar" %cd%\server.jar) else (goto go2)
-@echo ÏÂÔØÍê³É£¬¼´½«¿ª·ş
+if %djar%==8 (bitsadmin /transfer down /download /priority normal "https://piston-data.mojang.com/v1/objects/f69c284232d7c7580bd89a5a4931c3581eae1378/server.jar" %cd%\server.jar) else (goto j8)
+:j8
+if %djar%==9 (bitsadmin /transfer down /download /priority normal "https://piston-data.mojang.com/v1/objects/3737db93722a9e39eeada7c27e7aca28b144ffa7/server.jar" %cd%\server.jar) else (goto go2)
+@echo ä¸‹è½½å®Œæˆï¼Œå³å°†å¼€æœ
 goto go2
 
 
