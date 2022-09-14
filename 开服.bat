@@ -48,7 +48,7 @@ pause
 @echo 2 下载1.9.4服务端   8 下载1.13.2服务端
 @echo 3 下载1.12.2服务端 9 下载catserver1.12.2
 @echo 4 下载1.14.4服务端 A 下载catserver1.16.5
-@echo 5 下载1.16.5服务端 
+@echo 5 下载1.16.5服务端 B 下载mohistmc 1.18.2
 @echo 6 下载1.18.2服务端
 @echo 7 下载1.19.2服务端
 @echo 原版端下载自mojang服务器，其它端来自GitHub
@@ -75,9 +75,9 @@ if %djar%==9 (bitsadmin /transfer down /download /priority normal "https://pisto
 :j9
 if %djar%==10 (bitsadmin /transfer down /download /priority normal "https://gitee.com/hdqid/minecraft-service/releases/download/catserver/CatServer-8d58cdb8-universal.jar" %cd%\server.jar) else (goto j10)
 :j10
-if %djar%==10 (bitsadmin /transfer down /download /priority normal "https://gitee.com/hdqid/minecraft-service/releases/download/catserver1.16.5/CatServer-1.16.5-301aa5f8-server.jar" %cd%\server.jar) else (goto j11)
+if %djar%==11 (bitsadmin /transfer down /download /priority normal "https://gitee.com/hdqid/minecraft-service/releases/download/catserver1.16.5/CatServer-1.16.5-301aa5f8-server.jar" %cd%\server.jar) else (goto j11)
 :j11
-if %djar%==10 (bitsadmin /transfer down /download /priority normal "https://mohistmc.com/builds/1.18.2-testing/mohist-1.18.2-90-server.jar" %cd%\server.jar) else (goto go2)
+if %djar%==12 (bitsadmin /transfer down /download /priority normal "https://mohistmc.com/builds/1.18.2-testing/mohist-1.18.2-90-server.jar" %cd%\server.jar) else (goto go2)
 :j12
 @echo 下载完成，即将开服
 goto go2
